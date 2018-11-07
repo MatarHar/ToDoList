@@ -4,7 +4,7 @@
 -->
 <?php
 
-require_once 'php/add.php';
+require_once 'php/connect.php';
 
 $itemsQuery = $db->prepare("
     SELECT id, name, done 
@@ -37,10 +37,15 @@ $items = $itemsQuery->rowCount() ? $itemsQuery : [];
         <?php if(!empty($items)): ?>
         <ul class="list_content">
         <?php foreach($items as $item): ?>
-        Check
             <li>
-                <span class="item_done"><?php echo $item['name']; ?></span>
-                <a href="#">Done</a>
+                <span class="item<?php echo $item['done'] ? '_done' : '_not_done' ?>"><?php echo $item['name']; ?></span>
+                <?php if($item['done']): ?>
+                    <a href="mark.php?as=not_done&item=<?php echo $item['id']?>" class="done">Done</a>
+                    <a href="mark.php?as=delete&item=<?php echo $item['id']?>" class="delete">DELETE</a>
+                        <?php else: ?>
+                    <a href="mark.php?as=done&item=<?php echo $item['id']?>" class="not_done">NotDone</a>
+                    <a href="mark.php?as=delete&item=<?php echo $item['id']?>" class="delete">DELETE</a>
+                    <?php endif ?>
             </li>
             <?php endforeach; ?>
         </ul>

@@ -9,12 +9,6 @@ body,input{
     color: #231311;
 }
 
-.item_done,.item_not_done {
-    font-weight: 600;
-}
-
-
-
 .main_container {
     background-color: #f3e4bc;
     margin: 30px auto;
@@ -55,17 +49,34 @@ body,input{
     margin: 10px 0 0 0;
     font-size: 2em;
 }
+
+.item_done,.item_not_done {
+    font-weight: 600;
+}
+
 a {
     text-decoration: none;
     font-weight: 800;
+}
+
+a.done {
     color: #32CD32;
+}
+
+a.not_done {
+    color: red;
 }
 
 a.not_done:hover{
     color: blue;
-    content: 'YO';
 }
 
-.not_done {
-    color: red;
+a.delete {
+    float: right;
+    color: pink;
 }
+
+a.delete:hover {
+    color: black;
+}
+
